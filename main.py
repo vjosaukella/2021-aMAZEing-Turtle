@@ -1,5 +1,6 @@
 # Imports
 import turtle as trtl
+import random as rand
 
 #Setup Variables
 numSides = 25
@@ -22,9 +23,10 @@ preBarrier = 40
 while(currentSide < numSides):
     if(currentSide < 4):
         #painter.forward(currentSize)
-        print("test")
+        print("")
     else:
-
+        beforeDoor = rand.randint(length, currentSize - doorSize-length)
+        prebarrier = rand.randint(length, currentSize - length)
         # Door Handle(r)
         painter.forward(beforeDoor)
         #painter.penup()
