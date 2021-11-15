@@ -6,7 +6,7 @@ numSides = 25
 length = 20
 color = "blue"
 doorSize = 40
-wallPiece = 5
+beforeDoor = 5
 
 #Turtle Settings
 painter = trtl.Turtle()
@@ -26,10 +26,12 @@ while(currentSide < numSides):
     else:
 
         # Door Handle(r)
-        painter.forward(wallPiece)
-        painter.penup()
+        painter.forward(beforeDoor)
+        #painter.penup()
+        painter.pencolor("magenta")
         painter.forward(doorSize)
-        painter.pendown()
+        painter.pencolor(color)
+        #painter.pendown()
 
         # CFM Code Here
         painter.forward(preBarrier)
@@ -40,7 +42,7 @@ while(currentSide < numSides):
         painter.left(90)
         # Wall End
 
-        painter.forward(currentSize - doorSize - wallPiece - preBarrier)
+        painter.forward(currentSize - doorSize - beforeDoor - preBarrier)
 
     painter.left(90)
     currentSize += length
