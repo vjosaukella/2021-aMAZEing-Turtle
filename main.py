@@ -27,22 +27,46 @@ while(currentSide < numSides):
     else:
         beforeDoor = rand.randint(length, currentSize - doorSize-length)
         prebarrier = rand.randint(length, currentSize - length)
-        # Door Handle(r)
-        painter.forward(beforeDoor)
-        #painter.penup()
-        painter.pencolor("magenta")
-        painter.forward(doorSize)
-        painter.pencolor(color)
-        #painter.pendown()
 
-        # CFM Code Here
-        painter.forward(preBarrier)
-        painter.left(90)
-        painter.forward(length*2)
-        painter.right(180)
-        painter.forward(length*2)
-        painter.left(90)
-        # Wall End
+        if(beforeDoor < prebarrier):
+
+            # Door Handle(r)
+            painter.forward(beforeDoor)
+            #painter.penup()
+            painter.pencolor("magenta")
+            painter.forward(doorSize)
+            painter.pencolor(color)
+            #painter.pendown()
+
+            # CFM Code Here
+            painter.forward(preBarrier)
+            painter.left(90)
+            painter.forward(length*2)
+            painter.right(180)
+            painter.forward(length*2)
+            painter.left(90)
+            # Wall End
+        else:
+
+            prebarrier = 40
+            beforeDoor = length * 2
+            # Door Handle(r)
+            painter.forward(beforeDoor)
+            # painter.penup()
+            painter.pencolor("magenta")
+            painter.forward(doorSize)
+            painter.pencolor(color)
+            # painter.pendown()
+
+            # CFM Code Here
+            painter.forward(preBarrier)
+            painter.left(90)
+            painter.forward(length * 2)
+            painter.right(180)
+            painter.forward(length * 2)
+            painter.left(90)
+            # Wall End
+
 
         painter.forward(currentSize - doorSize - beforeDoor - preBarrier)
 
