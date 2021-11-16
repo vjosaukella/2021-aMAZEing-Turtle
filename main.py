@@ -3,16 +3,16 @@ import turtle as trtl
 import random as rand
 
 #Setup Variables
-numSides = 25
+numSides = 6
 length = 20
 color = "blue"
-doorSize = 40
+doorSize = length * 2
 beforeDoor = 5
 
 #Turtle Settings
 painter = trtl.Turtle()
 painter.pencolor(color)
-painter.speed("fastest")
+#painter.speed("fastest")
 painter.pensize(5)
 
 
@@ -25,10 +25,12 @@ while(currentSide < numSides):
         #painter.forward(currentSize)
         print("")
     else:
-        beforeDoor = rand.randint(length, currentSize - doorSize-length)
-        prebarrier = rand.randint(length, currentSize - length)
+        #beforeDoor = rand.randint(length*2, currentSize - length*2)
+        #preBarrier = rand.randint(length*2, currentSize - length*2)
+        beforeDoor = 10
+        preBarrier = 20
 
-        if(beforeDoor < prebarrier):
+        if(beforeDoor < preBarrier):
 
             # Door Handle(r)
             painter.forward(beforeDoor)
@@ -39,25 +41,17 @@ while(currentSide < numSides):
             #painter.pendown()
 
             # CFM Code Here
-            painter.forward(preBarrier)
+            painter.forward(preBarrier - beforeDoor - length * 2)
             painter.left(90)
             painter.forward(length*2)
             painter.right(180)
             painter.forward(length*2)
             painter.left(90)
             # Wall End
+
+            painter.forward(currentSize - doorSize - beforeDoor - preBarrier)
+
         else:
-
-            prebarrier = 40
-            beforeDoor = length * 2
-            # Door Handle(r)
-            painter.forward(beforeDoor)
-            # painter.penup()
-            painter.pencolor("magenta")
-            painter.forward(doorSize)
-            painter.pencolor(color)
-            # painter.pendown()
-
             # CFM Code Here
             painter.forward(preBarrier)
             painter.left(90)
@@ -67,9 +61,16 @@ while(currentSide < numSides):
             painter.left(90)
             # Wall End
 
+            # Door Handle(r)
+            painter.forward(beforeDoor - preBarrier - length * 2)
+            # painter.penup()
+            painter.pencolor("magenta")
+            painter.forward(doorSize)
+            painter.pencolor(color)
+            # painter.pendown()
 
-        painter.forward(currentSize - doorSize - beforeDoor - preBarrier)
-
+            painter.forward(currentSize - doorSize - beforeDoor - preBarrier)
+    painter.forward(currentSize)
     painter.left(90)
     currentSize += length
     currentSide+=1
