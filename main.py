@@ -35,8 +35,9 @@ def drawBarrier(preBarrier):
     painter.forward(preBarrier)
     painter.left(90)
     painter.forward(length * 2)
-    painter.backward(length * 2)
-    painter.right(90)
+    painter.left(180)
+    painter.forward(length * 2)
+    painter.left(90)
 
 while(currentSide < numSides):
     if(currentSide >= 4):
