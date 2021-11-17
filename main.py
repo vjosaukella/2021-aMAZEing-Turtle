@@ -3,11 +3,11 @@ import turtle as trtl
 import random as rand
 
 #Setup Variables
-numSides = 6
+numSides = 25
 length = 20
 color = "blue"
 doorSize = length * 2
-beforeDoor = 5
+
 
 #Turtle Settings
 painter = trtl.Turtle()
@@ -18,64 +18,52 @@ painter.pensize(5)
 
 currentSide = 0
 currentSize = length
-preBarrier = 40
+beforeDoor = 0
+beforeBarrier = 0
+
+def getRand():
+    global beforeDoor
+    global beforeBarrier
+    beforeDoor = rand.randint(length * 2, (currentSize - length * 2))
+    beforeBarrier = rand.randint(length * 2, (currentSize - length * 2))
+
+def drawDoor(preDoor):
+    global painter
+    painter.forward(preDoor)
+    painter.pencolor("magenta")
+    painter.forward(doorSize)
+    painter.pencolor(color)
+
+def drawBarrier(preBarrier):
+    painter.forward(preBarrier)
+    painter.left(90)
+    painter.forward(length * 2)
+    painter.backward(length * 2)
+    painter.right(90)
 
 while(currentSide < numSides):
-    if(currentSide < 4):
-        #painter.forward(currentSize)
-        print("")
-    else:
-        #beforeDoor = rand.randint(length*2, currentSize - length*2)
-        #preBarrier = rand.randint(length*2, currentSize - length*2)
-        beforeDoor = 10
-        preBarrier = 20
+    if(currentSide >= 4):
+        getRand()
 
-        if(beforeDoor < preBarrier):
+        while abs(beforeDoor - beforeBarrier < length):
+            getRand()
 
-            # Door Handle(r)
-            painter.forward(beforeDoor)
-            #painter.penup()
-            painter.pencolor("magenta")
-            painter.forward(doorSize)
-            painter.pencolor(color)
-            #painter.pendown()
-
-            # CFM Code Here
-            painter.forward(preBarrier - beforeDoor - length * 2)
-            painter.left(90)
-            painter.forward(length*2)
-            painter.right(180)
-            painter.forward(length*2)
-            painter.left(90)
-            # Wall End
-
-            painter.forward(currentSize - doorSize - beforeDoor - preBarrier)
+        if(beforeDoor < beforeBarrier):
+            drawDoor(beforeDoor)
+            drawBarrier(beforeBarrier - beforeDoor - length * 2)
+            painter.forward(currentSize - beforeBarrier)
 
         else:
-            # CFM Code Here
-            painter.forward(preBarrier)
-            painter.left(90)
-            painter.forward(length * 2)
-            painter.right(180)
-            painter.forward(length * 2)
-            painter.left(90)
-            # Wall End
-
-            # Door Handle(r)
-            painter.forward(beforeDoor - preBarrier - length * 2)
-            # painter.penup()
-            painter.pencolor("magenta")
-            painter.forward(doorSize)
-            painter.pencolor(color)
-            # painter.pendown()
-
-            painter.forward(currentSize - doorSize - beforeDoor - preBarrier)
-    painter.forward(currentSize)
-    painter.left(90)
+            drawBarrier(beforeBarrier)
+            drawDoor(beforeDoor - beforeBarrier)
+            painter.forward(currentSize - beforeDoor - length * 2)
+        painter.left(90)
+    currentSide += 1
     currentSize += length
-    currentSide+=1
 
 painter.hideturtle()
 
 wn = trtl.Screen()
 wn.mainloop()
+
+
