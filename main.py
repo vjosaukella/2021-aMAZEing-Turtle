@@ -2,12 +2,6 @@
 import turtle as trtl
 import random as rand
 
-#Turtle settings
-painter = trtl.Turtle()
-painter.pencolor(color)
-painter.speed("fastest")
-painter.pensize(5)
-
 # Maze settings
 numSides = 25
 length = 20
@@ -17,6 +11,12 @@ currentSide = 0
 currentSize = length
 beforeDoor = 0
 beforeBarrier = 0
+
+#Turtle settings
+painter = trtl.Turtle()
+painter.pencolor(color)
+painter.speed("fastest")
+painter.pensize(5)
 
 def getRand():
     global beforeDoor
